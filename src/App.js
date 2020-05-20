@@ -1,20 +1,24 @@
 import React, {useState, useEffect} from 'react';
-import './App.css';
-import { FontAwesome } from '@fortawesome/react-fontawesome'
 function App() {
   let [counter, setCounter] = useState(3000)
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     if(paused) {
-      const timer = setInterval(() => {
+      let timer = setInterval(() => {
         setCounter(counter => Math.max(counter - 100, 0))
       }, 100);
       return () => {
         clearInterval(timer);
       };
     }
-  }, [paused]);
+  }, [paused])
+
+  useEffect(() => {
+    if(!paused) {
+        setPaused(false)
+    }
+  }, [paused])
 
   function startPauseTimer() {
     setPaused(counter ? !paused : false)
@@ -47,5 +51,7 @@ function App() {
     </div>
   );
 }
+import './App.css';
+import { FontAwesome } from '@fortawesome/react-fontawesome'
 
 export default App;
