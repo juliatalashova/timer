@@ -1,4 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import './App.css';
+import { FontAwesome } from '@fortawesome/react-fontawesome'
+
 function App() {
   let [counter, setCounter] = useState(3000)
   const [paused, setPaused] = useState(false);
@@ -37,12 +40,12 @@ function App() {
         </div>
         <div className="run">
           Running:
-          <span>{paused ? "true" : "false"}</span>
+          <span>{counter > 0 && paused ? "true" : "false"}</span>
         </div>
       </div>
       <div className="btns-container">
         <button type="button" className="btn-play" disabled={!counter} onClick={startPauseTimer}>
-          {paused ? <i className="fa fa-pause fa-2x"></i> : <i className="fa fa-play fa-2x"></i>}
+          {counter > 0 && paused ? <i className="fa fa-pause fa-2x"></i> : <i className="fa fa-play fa-2x"></i>}
         </button>
         <button type="button" className="btn-stop" onClick={resetTimer}>
           <i className="fa fa-stop fa-2x"></i>
@@ -51,7 +54,5 @@ function App() {
     </div>
   );
 }
-import './App.css';
-import { FontAwesome } from '@fortawesome/react-fontawesome'
 
 export default App;
